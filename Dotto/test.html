@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h2>My Phonebook</h2>
+
+<input type="text" id="myInput" placeholder="Search for names.."onkeyup = "nameFilter()" title="Type in a name">
+<button id = "name"> Name </button>
+<button id = "location"> Location </button>
+
+<style>
+    button{
+        height: 200px; 
+        width: auto; 
+    }
+</style>
+
+
+<div id="myUL">
+  <div>
+  	<h1 href="#">Adele</h1>
+    <p>France </p> 
+  </div>
+  <div>
+  	<h1 href="#">Agnes</h1>
+    <p href="#">Spain </p> 
+  </div>
+  <div>
+  	<h1 href="#">Billy</h1>
+    <p href="#">China </p> 
+   </div>
+  <div>	
+  	<h1 href="#">Bob</h1></div>
+    <p href="#">Japan </p> 
+  <div>
+  	<h1 href="#">Calvin</h1>
+    <p href="#">United Kingdom </p> 
+  </div>
+  <div>
+  	<h1 href="#">Christina</h1>
+    <p href="#">Dominican Republic </p> 
+    </div>
+  <div>
+  	<h1 href="#">Cindy</h1>
+    <p href="#">Yemen </p> 
+  </div>
+</div> 
+
+<script defer>
+// var location_btn = document.getElementById("location"); 
+// // location_btn.addEventListener("click", function() { alert("clicktrack"); }, false);
+// location_btn.addEventListener("click", locationFilter()); 
+// var name_btn = document.getElementById("name"); 
+// name_btn.addEventListener("click", nameFilter(), false);
+// // name_btn.addEventListener("click", nameFilter()); 
+// console.log(document.getElementById("myInput").onkeyup);
+
+if(document.getElementById("myInput").onkeyup == null){
+    console.log("now name"); 
+    document.getElementById("myInput").onkeyup = nameFilter();
+}
+
+function nameFilter() {
+    var input, filter, ul, li, a, i, txtValue, placeholder;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("div");
+    console.log(li);
+    p = ul.getElementsByTagName("p"); 
+    input.placeholder = "Search for names..."; 
+    // console.log(li[0].getElementsByTagName("h1")[0]);
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h1")[0];
+        console.log(a);
+        txtValue = a.textContent || a.innerText;
+        // console.log(txtValue);
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            p[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+          p[i].style.display = "none"; 
+        }
+    }
+}
+
+function locationFilter() {
+    var input, filter, ul, li, a, i, txtValue;
+    var count;
+    count++;  
+    input = document.getElementById("myInput");
+    input.placeholder = "Search for locations..."; 
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = document.getElementById("myUL").getElementsByTagName("div");
+    p = document.getElementById("myUL").getElementsByTagName("p");
+    for (i = 0; i < p.length; i++) {
+        a = p[i];
+        txtValue = a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            p[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+          p[i].style.display = "none"; 
+        }
+    }
+}
+</script>
+</body>
+</html>

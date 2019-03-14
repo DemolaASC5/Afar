@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div id = "header">
+                <div class = "image">
+                    <img id = "Dotto-dog-logo-alternate-bw"src="https://i.ibb.co/2YvRcWn/Dotto-dog-logo-alternate-bw.png" alt="" srcset="">
+                </div>
+                <div class = "text">  
+                    <img id = "Dotto-word-logo-alternate-b-w" src="https://i.ibb.co/1ZnB0p0/Afar.png" alt="">
+                    <p id = "motto">If you don't know where to go, go Afar!</p>
+                    <div id = "navbar">
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\index.html">HOME</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\about.html">ABOUT</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\blog.html">BLOG</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\database.html">DATABASE</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\contribute.html">CONTRIBUTE</a></div>
+                    </div>
+                </div> 
+            </div> 
+                    <style>
+                    #header{
+                        background-color: black; 
+                        display: flex; 
+                    }
+                    #Dotto-dog-logo-alternate-bw{
+                        height: 250px; 
+                        width: auto; 
+                    }
+                    /* #Dotto-word-logo-alternate-b-w{
+                        margin-top: 20px;
+                        height: 175px; 
+                        width: auto; 
+                    } */
+                    #motto{
+                        color: white; 
+                        margin-left: 10px;
+                        font-family: 'Lato', sans-serif;
+                        font-size: 35px;
+                        margin-top: 0px; margin-bottom: 0px;
+                        font-style: italic;
+                    }
+                    #navbar{
+                        display: flex; 
+                        width: 100%; 
+                        background-color: black; 
+                        justify-content: space-between;
+                        /* margin-left: 100px;  */
+                        margin-right: 200px;  
+                    }
+                    #navbar a{
+                        color: white; 
+                        text-decoration: none; 
+                        font-family: Verdana, sans-serif;
+                    }
+                    .navbarlink{ 
+                        margin-top: 15px; 
+                        margin-left: 20px; 
+                        margin-right: 20px;
+                        margin-bottom: 10px; 
+                        font-size: 20px;
+                    }
+                    .text{
+                        display: flex; 
+                        flex-direction: column; 
+                    }
+                    .text img{
+                        margin-top: 20px;
+                        width: 300px; 
+                        height: auto; 
+                    }
+                    @media only screen and (max-width: 800px) {
+                        .image {
+                            display: none; 
+                        }
+                        #motto{
+                            display: none; 
+                        }
+                        .text img{
+                            margin-top: 0px;
+                            width: 50%;
+                            margin-left: auto; 
+                            margin-right: auto;  
+                            height: auto; 
+                            background-color: black;    
+                        }
+                        .text{
+                            background-color: black; 
+                        }
+                        }
+                </style>    
+        <style>
+            * {box-sizing: border-box;}
+            body {font-family: Verdana, sans-serif;}
+            .mySlides {display: none;}
+            img {vertical-align: middle;}
+            
+            /* Slideshow container */
+            .slideshow-container {
+              max-width: 1000px;
+              position: relative;
+              margin: auto;
+            }
+            
+            /* Caption text */
+            .text_ {
+              color: #f2f2f2;
+              font-size: 15px;
+              padding: 8px 12px;
+              position: absolute;
+              bottom: 8px;
+              width: 100%;
+              text-align: center;
+            }
+            
+            /* Number text (1/3 etc) */
+            .numbertext {
+              color: #f2f2f2;
+              font-size: 12px;
+              padding: 8px 12px;
+              position: absolute;
+              top: 0;
+            }
+            
+            /* The dots/bullets/indicators */
+            .dot {
+              height: 15px;
+              width: 15px;
+              margin: 0 2px;
+              background-color: #bbb;
+              border-radius: 50%;
+              display: inline-block;
+              transition: background-color 0.6s ease;
+            }
+            
+            .active {
+              background-color: #717171;
+            }
+            
+            /* Fading animation */
+            .fade {
+              -webkit-animation-name: fade;
+              -webkit-animation-duration: 1.5s;
+              animation-name: fade;
+              animation-duration: 1.5s;
+            }
+            
+            @-webkit-keyframes fade {
+              from {opacity: .4} 
+              to {opacity: 1}
+            }
+            
+            @keyframes fade {
+              from {opacity: .4} 
+              to {opacity: 1}
+            }
+            
+            /* On smaller screens, decrease text size */
+            @media only screen and (max-width: 300px) {
+              .text {font-size: 11px}
+            }
+            </style>
+            </head>
+            <body>
+            
+            <div class="slideshow-container">
+            
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 3</div>
+              <img src="https://images.goaheadtours.com/dynamic-image/29725_80_1366_600/the-great-wall-of-china.jpg" style="width:100%">
+              <div class="text_">China</div>
+            </div>
+            
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 3</div>
+              <img src="https://photos.mandarinoriental.com/is/image/MandarinOriental/paris-2017-home?wid=2880&hei=1280&fmt=jpeg&crop=9,336,2699,1200&anchor=1358,936&qlt=75,0&fit=wrap&op_sharpen=0&resMode=sharp2&op_usm=0,0,0,0&iccEmbed=0&printRes=72" style="width:100%">
+              <div class="text_">France</div>
+            </div>
+            
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 3</div>
+              <img src="https://img.theculturetrip.com/970x440/smart//wp-content/uploads/2015/11/shutterstock_421013719.jpg" style="width:100%">
+              <div class="text_">Brazil</div>
+            </div>
+            
+            </div>
+            <br>
+            
+            <div style="text-align:center">
+              <span class="dot"></span> 
+              <span class="dot"></span> 
+              <span class="dot"></span> 
+            </div>
+            
+            <script>
+            var slideIndex = 0;
+            showSlides();
+            
+            function showSlides() {
+              var i;
+              var slides = document.getElementsByClassName("mySlides");
+              var dots = document.getElementsByClassName("dot");
+              for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+              }
+              slideIndex++;
+              if (slideIndex > slides.length) {slideIndex = 1}    
+              for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";  
+              dots[slideIndex-1].className += " active";
+              setTimeout(showSlides, 2000); // Change image every 2 seconds
+            }
+            </script>
+</body>
+</html>

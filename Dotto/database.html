@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Afar Database</title>
+</head>
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+<script src="main.js" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<body>
+        <div id = "header">
+                <div class = "image">
+                    <img id = "Dotto-dog-logo-alternate-bw"src="https://i.ibb.co/2YvRcWn/Dotto-dog-logo-alternate-bw.png" alt="" srcset="">
+                </div>
+                <div class = "text">  
+                    <img id = "Dotto-word-logo-alternate-b-w" src="https://i.ibb.co/1ZnB0p0/Afar.png" alt="">
+                    <p id = "motto">If you don't know where to go, go Afar!</p>
+                    <div id = "navbar">
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\index.html">HOME</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\about.html">ABOUT</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\blog.html">BLOG</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\database.html">DATABASE</a></div>
+                            <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\contribute.html">CONTRIBUTE</a></div>
+                    </div>
+                </div> 
+            </div> 
+                    <style>
+                    #header{
+                        background-color: black; 
+                        display: flex; 
+                    }
+                    #Dotto-dog-logo-alternate-bw{
+                        height: 250px; 
+                        width: auto; 
+                    }
+                    /* #Dotto-word-logo-alternate-b-w{
+                        margin-top: 20px;
+                        height: 175px; 
+                        width: auto; 
+                    } */
+                    #motto{
+                        color: white; 
+                        margin-left: 10px;
+                        font-family: 'Lato', sans-serif;
+                        font-size: 35px;
+                        margin-top: 0px; margin-bottom: 0px;
+                        font-style: italic;
+                    }
+                    #navbar{
+                        display: flex; 
+                        width: 100%; 
+                        background-color: black; 
+                        justify-content: space-between;
+                        /* margin-left: 100px;  */
+                        margin-right: 200px;  
+                    }
+                    #navbar a{
+                        color: white; 
+                        text-decoration: none; 
+                        font-family: Verdana, sans-serif;
+                    }
+                    .navbarlink{ 
+                        margin-top: 15px; 
+                        margin-left: 20px; 
+                        margin-right: 20px;
+                        margin-bottom: 10px; 
+                        font-size: 20px;
+                    }
+                    .text{
+                        display: flex; 
+                        flex-direction: column; 
+                    }
+                    .text img{
+                        margin-top: 20px;
+                        width: 300px; 
+                        height: auto; 
+                    }
+                    @media only screen and (max-width: 800px) {
+                        .image {
+                            display: none; 
+                        }
+                        #motto{
+                            display: none; 
+                        }
+                        .text img{
+                            margin-top: 0px;
+                            width: 50%;
+                            margin-left: auto; 
+                            margin-right: auto;  
+                            height: auto; 
+                            background-color: black;    
+                        }
+                        .text{
+                            background-color: black; 
+                        }
+                        }
+                </style>    
+    <div id = "filter">
+            <input type="text" id="myInput" onkeyup = "nameFilter()" placeholder="Search for names..">
+            <select id = "filtration" onchange="findChange()">
+                <option id = "filter">Filter</option>
+                <option id = "name">Name</option>
+                <option id = "location">Location</option>
+                <option id = "duration">Duration</option>
+                <option id = "focus">Focus</option>
+            </select>
+            <input type="text" id="myInput2" onkeyup = "nameFilter()" placeholder="Search for names..">
+            <select id = "filtration2" onchange="findChange2()">
+                <option id = "filter2">Filter</option>
+                <option id = "name2">Name</option>
+                <option id = "location2">Location</option>
+                <option id = "duration2">Duration</option>
+                <option id = "focus2">Focus</option>
+            </select>
+            <input type="text" id="myInput3" onkeyup = "nameFilter()" placeholder="Search for names..">
+            <select id = "filtration3" onchange="findChange3()">
+                <option id = "filter3">Filter</option>
+                <option id = "name3">Name</option>
+                <option id = "location3">Location</option>
+                <option id = "duration3">Duration</option>
+                <option id = "focus3">Focus</option>
+            </select>
+        </div>
+        <!-- <i class="fa fa-map-marker" id = "fa fa-map-marker id" style="font-size:48px;color:green"></i> -->
+        <div id = "datacollection">
+        </div>
+        <style>
+            #filter{
+                display: flex; 
+                flex-direction: row; 
+            }
+        </style>
+          <style>
+              .database{
+                  display: flex; 
+                  flex-direction: row; 
+              }
+              .logo{
+                  width: 250px; 
+                  height: auto; 
+              }
+              .imagediv{
+                  margin-top: 50px; 
+                  margin-bottom: 50px; 
+                  margin-right: 25px; 
+                  margin-left: 10px; 
+              }
+              .textdiv{
+                  display: flex; 
+                  flex-direction: column; 
+              }
+          </style>
+        <script>
+       
+        function findChange(){
+            var option = document.getElementById("filtration").value;
+            return option; 
+        }
+        function findChange2(){ 
+            var option2 = document.getElementById("filtration2").value; 
+            return option2; 
+        }
+        function findChange3(){ 
+            var option3 = document.getElementById("filtration3").value; 
+            return option3; 
+        }
+
+        var input = document.getElementById("myInput"); 
+        function nameFilter() {
+            if(findChange() == "Name" || findChange2()== "Name" || findChange3() == "Name"){
+                // console.log("Name Selected");
+                var filter, ul, li, a, i, txtValue, placeholder,dataholder;
+                if(findChange() == "Name"){
+                    var input = document.getElementById("myInput"); 
+                    input = document.getElementById("myInput");
+                    document.getElementById("myInput").placeholder = "Search for names..."; 
+                }
+                else{
+                    document.getElementById("myInput").addEventListener("keyup",locationFilter);
+                }
+                if(findChange2() == "Name"){
+                    var input = document.getElementById("myInput2"); 
+                    input = document.getElementById("myInput2");
+                    document.getElementById("myInput2").placeholder = "Search for names..."; 
+                }
+                else{
+                    document.getElementById("myInput2").addEventListener("keyup",locationFilter);
+                }
+                if(findChange3() == "Name"){
+                    var input = document.getElementById("myInput3"); 
+                    input = document.getElementById("myInput3");
+                    document.getElementById("myInput3").placeholder = "Search for names..."; 
+                }
+                else{
+                    document.getElementById("myInput3").addEventListener("keyup",locationFilter);
+                }
+                filter = input.value.toUpperCase();
+                li = document.getElementsByClassName("textdiv");
+                dataholder = document.getElementsByClassName("database"); 
+                for(let i = 0; i < li.length; i++){
+                    a = li[i].getElementsByTagName("h1")[0];
+                    txtValue = a.textContent || a.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            dataholder[i].style.display = ""; 
+                            li[i].style.display = "";
+                        } 
+                        else {
+                            dataholder[i].style.display = "none"; 
+                            li[i].style.display = "none";
+                        }
+                }
+            }
+            else{
+                document.getElementById("myInput").addEventListener("keyup",locationFilter);
+                document.getElementById("myInput2").addEventListener("keyup",locationFilter);
+                document.getElementById("myInput3").addEventListener("keyup",locationFilter);
+            }
+        }
+        var filterlocation = document.getElementById("location"); 
+        function locationFilter(){
+            if(findChange() == "Location" || findChange2()== "Location" || findChange3() == "Location"){
+                var filter, ul, li, a, i, txtValue, placeholder,dataholder;
+                // console.log("location selected");
+                
+                if(findChange() == "Location"){
+                    var input = document.getElementById("myInput"); 
+                    input = document.getElementById("myInput");
+                    document.getElementById("myInput").placeholder = "Search for destinations..."; 
+                }
+                else{
+                    document.getElementById("myInput").addEventListener("keyup",focusFilter);
+                }
+                if(findChange2() == "Location"){
+                    var input = document.getElementById("myInput2"); 
+                    input = document.getElementById("myInput2");
+                    document.getElementById("myInput2").placeholder = "Search for destinations..."; 
+                }
+                else{
+                    document.getElementById("myInput2").addEventListener("keyup",focusFilter);
+                }
+                if(findChange3() == "Location"){
+                    var input = document.getElementById("myInput3"); 
+                    input = document.getElementById("myInput3");
+                    document.getElementById("myInput3").placeholder = "Search for destinations..."; 
+                }
+                else{
+                    document.getElementById("myInput3").addEventListener("keyup",focusFilter);
+                }
+                filter = input.value.toUpperCase();
+                li = document.getElementsByClassName("textdiv");
+                dataholder = document.getElementsByClassName("database"); 
+                for(let i = 0; i < li.length; i++){
+                    a = li[i].getElementsByTagName("p5")[0];
+                    // console.log(li[i]);
+                    txtValue = a.textContent || a.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            dataholder[i].style.display = ""; 
+                            li[i].style.display = "";
+                        } 
+                        else {
+                            dataholder[i].style.display = "none"; 
+                            li[i].style.display = "none";
+                        }
+                }
+            }
+            else{
+                document.getElementById("myInput").addEventListener("keyup",focusFilter);
+                document.getElementById("myInput2").addEventListener("keyup",focusFilter);
+                document.getElementById("myInput3").addEventListener("keyup",focusFilter);
+            }
+        }
+        function focusFilter(){ 
+            if(findChange() == "Focus" || findChange2()== "Focus" || findChange3() == "Focus"){
+                var filter, ul, li, a, i, txtValue, placeholder,dataholder;
+                // console.log("Focus Selected");
+                if(findChange() == "Focus"){
+                    var input = document.getElementById("myInput"); 
+                    input = document.getElementById("myInput");
+                    document.getElementById("myInput").placeholder = "Search for a specific focus..."; 
+                }
+                else{
+                    document.getElementById("myInput").addEventListener("keyup",nameFilter);
+                }
+                if(findChange2() == "Focus"){
+                    var input = document.getElementById("myInput2"); 
+                    input = document.getElementById("myInput2");
+                    document.getElementById("myInput2").placeholder = "Search for a specific focus..."; 
+                }
+                else{
+                    document.getElementById("myInput2").addEventListener("keyup",nameFilter);
+                }
+                if(findChange3() == "Focus"){
+                    var input = document.getElementById("myInput3"); 
+                    input = document.getElementById("myInput3");
+                    document.getElementById("myInput3").placeholder = "Search for a specific focus..."; 
+                }
+                else{
+                    document.getElementById("myInput3").addEventListener("keyup",nameFilter);
+                }
+                filter = input.value.toUpperCase();
+                li = document.getElementsByClassName("textdiv");
+                dataholder = document.getElementsByClassName("database"); 
+                for(let i = 0; i < li.length; i++){
+                    a = li[i].getElementsByTagName("p4")[0];
+                    txtValue = a.textContent || a.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            dataholder[i].style.display = ""; 
+                            li[i].style.display = "";
+                        } 
+                        else {
+                            dataholder[i].style.display = "none"; 
+                            li[i].style.display = "none";
+                        }
+                }
+            }
+            else{
+                document.getElementById("myInput").addEventListener("keyup",nameFilter);
+                document.getElementById("myInput2").addEventListener("keyup",nameFilter);
+                document.getElementById("myInput3").addEventListener("keyup",nameFilter);
+            }
+        }
+        </script>
+        <script>
+            function callButton(){
+                var morebtn = document.getElementsByClassName('More');
+                console.log(document.getElementsByClassName('More').length );
+                console.log(morebtn);
+                for(let i = 0; i< morebtn.length; i++){
+                    // console.log(morebtn[i]);
+                    // console.log(morebtn[i].id.substring(7));
+                    morebtn[i].addEventListener("click",test()); 
+                    //morebtn[i].addEventListener("click", makeDocument(morebtn[i].id.substring(7),i)); 
+                }
+            }
+            function test(){
+                console.log("Yeah");
+                
+            }
+            setTimeout(callButton(), 4000);
+            function makeDocument(name, index, button) {
+                var wholedatabase = document.getElementById("datacollection"); 
+                wholedatabase.style.display = "none";
+                var filter = document.getElementById("filter"); 
+                filter.style.display = "none"; 
+                var morediv = document.createElement("div"); 
+                var morediv_text = document.createElement("div"); 
+                morediv.setAttribute("id", name); 
+                morediv_text.setAttribute("id", "moredivtext"); 
+                
+                var morediv_pic = document.getElementsByClassName("logo")[index];
+                var morediv_name = document.getElementsByClassName("name")[index];
+                morediv.setAttribute("src", morediv_link);
+                var morediv_description = document.getElementsByClassName("description")[index]; 
+                morediv_description.innerText = "The China Scholars Program enables global-minded youth (ages 15 – 17 or grades 9 – 11) to receive real-world experiences abroad, while developing an understanding for a foreign culture as well as a deeper grasp on their future careers goals. Every summer, Global Youth and APSA Scholarship recipients travel to China for this four-week intensive. In those weeks, the scholars immerse in Chinese language and culture through daily language instruction, excursions around the city, and various service-learning projects. Throughout this month-long experience scholars also attend workshops, talks and panel discussions with up-and-coming as well as seasoned career leaders from a variety of fields, including technology, diplomacy, education, business, and the arts. The scholars use this unparalleled access as an opportunity to ask thought-provoking question as well as build a professional network in their field of interest."; 
+                var morediv_location = document.getElementsByClassName("location")[index];
+                var morediv_focus = document.getElementsByClassName("focus")[index];
+                var morediv_link = document.getElementsByClassName("link")[index];
+                var morediv_contact = document.getElementsByClassName("contact")[index];
+
+                morediv_name.innerHTML = morediv_name.innerHTML; 
+                morediv_pic.setAttribute("id","moredivpic"); 
+                morediv_name.setAttribute("id","moredivname"); 
+                morediv_location.setAttribute("id","moredivlocation"); 
+                morediv_focus.setAttribute("id","moredivfocus"); 
+                morediv_link.setAttribute("id","moredivlink"); 
+                morediv_description.setAttribute("id","moredivdescription"); 
+                
+                morediv.appendChild(morediv_pic); 
+                morediv_text.appendChild(morediv_name); 
+                morediv_text.appendChild(morediv_location); 
+                morediv_text.appendChild(morediv_focus);
+                morediv_text.appendChild(morediv_description); 
+                morediv.appendChild(morediv_text);  
+                // morediv.appendChild(morediv_link); 
+                document.body.appendChild(morediv);
+            }
+        </script>  
+        <style>
+            #moredivpic{
+                width: 100%;
+                /* z-index: 0; 
+                position: absolute; */
+            }
+            #moredivname{
+                text-align: center; 
+            }
+            #morediv{
+                display: flex; 
+                flex-direction: column; 
+            }
+            #morediv_text{
+                display: flex; 
+                flex-direction: column; 
+            }
+            #moredivfocus{
+                display: inline; 
+            }
+            #morediv_text p{
+                display: inline;
+            }
+            .link {
+                display: inline-block;
+                border-radius: 4px;
+                background-color: #f4511e;
+                border: none;
+                color: #FFFFFF;
+                text-align: center;
+                font-size: 28px;
+                padding: 20px;
+                width: 200px;
+                transition: all 0.5s;
+                cursor: pointer;
+                margin: 5px;
+                vertical-align: middle; 
+            }
+
+                .link span {
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                transition: 0.5s;
+                top: -30px; 
+                }
+
+                .link span:after {
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+                }
+
+                .link:hover span {
+                padding-right: 25px;
+                }
+
+                .link:hover span:after {
+                opacity: 1;
+                right: 0;
+                }
+                /* .fafa-map-marker{
+                    display: none; 
+                } */
+                .location{
+                    color: green; 
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 20px; 
+                }
+                .focus{
+                    color: blue; 
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 20px;
+                }
+                .duration{
+                    color: goldenrod; 
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 20px;
+                }
+                .description{
+                    color: black; 
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 20px;
+                }
+                .More {
+                    -webkit-transition-duration: 0.4s; /* Safari */
+                    transition-duration: 0.4s;
+                    width: 200px;
+                    display: inline-block;
+                    border-radius: 4px;
+                    border: none;
+                    text-align: center;
+                    font-size: 28px;
+                    padding: 20px;
+                    width: 200px;
+                    transition: all 0.5s;
+                    margin: 5px;
+                    vertical-align: middle;
+                }
+
+                .More:hover {
+                    background-color: #4CAF50; /* Green */
+                    color: white;
+                }
+                .name{
+                    font-family: 'Roboto', sans-serif;
+                    
+                }
+                #moredivtext{
+                    display: flex;
+                    flex-direction: column;
+                }
+                #filter input{
+                    font-size: 30px; 
+                }
+                #filter select{
+                    font-size: 30px; 
+                }
+        </style>
+</body>
+</html>
