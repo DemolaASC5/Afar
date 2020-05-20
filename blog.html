@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="13665435551-7np9vt6qcd95m9qqekn0rebq3l473nph.apps.googleusercontent.com">
 </head>
 <body>
-        <div id = "header">
+        <!-- <div id = "header">
                 <div class = "image">
                     <img id = "Dotto-dog-logo-alternate-bw"src="https://i.ibb.co/2YvRcWn/Dotto-dog-logo-alternate-bw.png" alt="" srcset="">
                 </div>
@@ -22,8 +24,9 @@
                             <div class = "navbarlink"><a href="C:\Users\ASC Student\Documents\Dotto\contribute.html">CONTRIBUTE</a></div>
                     </div>
                 </div> 
-            </div> 
-                    <style>
+            </div>  -->
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <!-- <style>
                     #header{
                         background-color: black; 
                         display: flex; 
@@ -124,7 +127,16 @@
             .s_LLkvEcontrollerIconAndNameSkinname {display:inline-block;width:100%;padding:0 1px;box-sizing:border-box;text-overflow:ellipsis;text-align:center;overflow:hidden;line-height:18px;max-height:calc(2 * 18px);text-shadow:0px 2px 6px rgba(0, 0, 0, 0.7), 0px -1px 1px rgba(0, 0, 0, 0.5), 0px 1px 1px rgba(0, 0, 0, 0.88);color:#ffffff;font-family:HelveticaNeueW01-65Medi, HelveticaNeueW02-65Medi, HelveticaNeueW10-65Medi, Helvetica Neue, Helvetica, Arial, メイリオ, meiryo, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, sans-serif;font-size:13px;}</style></div></div><style type="text/css" data-styleid="p2">.p2bg {overflow:hidden;position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(255, 255, 255, 1);}
             .p2[data-state~="mobileView"] .p2bg {left:10px;right:10px;}
             .p2inlineContent {position:absolute;top:0;right:0;bottom:0;left:0;bottom:20px;}</style></div></div></div></main>
-    
+    <script> -->
+        <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+    </script>
 
 </body>
 </html>
